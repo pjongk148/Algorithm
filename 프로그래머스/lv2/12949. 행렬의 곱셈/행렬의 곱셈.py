@@ -9,3 +9,4 @@ def solution(arr1, arr2):
             tmp.append(num)
         arr3.append(tmp)
     return arr3
+#list(zip( * arr1 )) 행렬 뒤집기에 사용. 다음번엔 for문 여러개보다 열계산할때 사용해보자
