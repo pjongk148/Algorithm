@@ -1,15 +1,15 @@
-from math import ceil
+import math 
 def solution(progresses, speeds):
-    ans = []
-    tmp =1
-    max =ceil((100-progresses[0]) / speeds[0])
-    for i in range(1,len(progresses)):
-        if ceil((100-progresses[i]) / speeds[i]) > max:
-            max = ceil((100-progresses[i]) / speeds[i])
-            ans.append(tmp)
-            tmp =1
-        else:
-            tmp += 1
+    from collections import Counter
 
-    ans.append(tmp)
-    return ans
+    count =[]
+    for _ in range(len(progresses)):
+        count.append(math.ceil((100 - progresses[_])/speeds[_]))
+
+    for _ in range(1,len(count)):
+        if count[_] < count[_-1]:
+            count[_] = count[_-1]
+
+
+    answer = list(Counter(count).values())
+    return answer
