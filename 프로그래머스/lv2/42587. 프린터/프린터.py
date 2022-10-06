@@ -1,13 +1,22 @@
 def solution(priorities, location):
-    idx_arr = [i for i in range(len(priorities))]
-    ans =[]
-    while priorities !=[]:
+    if len(priorities) ==1:
+        return 1
+
+    count = 0 
+    order = [i for i in range(0,len(priorities))]
+    while priorities:
         if priorities[0] >= max(priorities):
-            ans.append(idx_arr[0])
-            priorities.pop(0)
-            idx_arr.pop(0)
+            count +=1
+            if order[0] == location:
+
+                return count
+                break
+            else:
+                priorities.pop(0)
+                order.pop(0)
 
         else:
             priorities.append(priorities.pop(0))
-            idx_arr.append(idx_arr.pop(0))
-    return ans.index(location) + 1
+            order.append(order.pop(0))
+            
+    return count
