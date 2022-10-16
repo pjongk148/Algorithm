@@ -1,3 +1,2 @@
 def solution(n):
-    answer = "수박" *n
-    return answer[:n]
+    return "수박"*(n//2) + "수"*(n%2)
