@@ -1,6 +1,6 @@
 # [level 1] 콜라츠 추측 - 12943 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/12943?language=python3) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/12943) 
 
 ### 성능 요약
 
