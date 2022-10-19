@@ -1,13 +1,20 @@
 def solution(N, stages):
-    stages.sort(reverse=True)
-    capacity = {}
-    for i in range(1,N+1):
-        if i not in stages:
-            capacity[i] = 1
-            
-        else:
-            capacity[i] = 1 - (stages.count(i)/(stages.count(i) + stages.index(i)))
+    arr = [0] * (N+1)
+    for i in stages:
+        arr[i-1] += 1
 
-    sorted_dict = sorted(capacity.items(), key = lambda item: item[1])
-    answer = [i[0] for i in sorted_dict]
+    ans =[]
+    for i in range(len(arr)-1):
+        if arr[i] ==0:
+            ans.append(0)
+            continue
+        ans.append(arr[i]/sum(arr[i:]))
+
+    dic = dict() 
+    for i,v in enumerate(ans):
+        dic[i+1] = v
+
+    sorted_dic = sorted(dic.items(), key=lambda x: x[1], reverse=True)
+
+    answer = [i[0] for i in sorted_dic]
     return answer
