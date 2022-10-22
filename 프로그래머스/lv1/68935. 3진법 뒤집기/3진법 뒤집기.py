@@ -5,4 +5,4 @@ def solution(n):
         st += str(n % 3)
         n = n // 3
 
-    return sum([int(st[i]) * (3**(len(st)-1-i)) for i in range(len(st))])
+    return int(st,3)
