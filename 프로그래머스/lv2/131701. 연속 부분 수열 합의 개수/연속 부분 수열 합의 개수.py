@@ -8,4 +8,5 @@ def solution(elements):
             score.add(sum(elements[tmp:tmp+i]))
             tmp += 1
 
-    return len(score) 
+    return len(score)
+    
