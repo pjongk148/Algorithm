@@ -3,7 +3,6 @@ def solution(files):
     head , number, tail= "","",""
     for file in files:
         for i in range(len(file)):
-            # 1. 첫번째는 무조건 문자이므로, 첫번째 문자이후 숫자일 경우
             if file[i].isdigit():
                 head = file[:i]
                 number = file[i:]
