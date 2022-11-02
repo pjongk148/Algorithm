@@ -1,33 +1,21 @@
-from collections import deque
 def solution(maps):
-    answer = 0
+    queue = [[0,0]]
 
-    dx = [-1, 1, 0, 0]
-    dy = [0, 0, -1, 1]
+    nx = [1,-1,0,0]
+    ny = [0,0,1,-1]
 
-    def bfs(x, y):
-        queue = deque()
-        queue.append((x, y))
+    while queue:
+        tmp = queue.pop(0)
+        x = tmp[1]
+        y = tmp[0]
 
-        
-        while queue:
-            x, y = queue.popleft()
+        for i in range(4):
+            dx = x + nx[i]
+            dy = y + ny[i]
 
-            
-            for i in range(4):
-                nx = x + dx[i]
-                ny = y + dy[i]
-
-               
-                if nx < 0 or nx >= len(maps) or ny < 0 or ny >= len(maps[0]): continue
-
-                if maps[nx][ny] == 0:  continue
-
-                if maps[nx][ny] == 1:
-                    maps[nx][ny] = maps[x][y] + 1
-                    queue.append((nx, ny))    # 재귀
-
-        return maps[len(maps)-1][len(maps[0])-1]
-
-    answer = bfs(0, 0)
-    return -1 if answer == 1 else answer   
+            if dx >= 0 and dx < len(maps[0]) and dy >= 0 and dy < len(maps):
+                if maps[dy][dx] == 1:
+                    maps[dy][dx] = maps[y][x] + 1
+                    queue.append([dy,dx])
+    
+    return maps[-1][-1] if maps[-1][-1] != 1 else -1
