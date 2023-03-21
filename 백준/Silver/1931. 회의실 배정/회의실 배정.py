@@ -1,6 +1,10 @@
+import sys
+n = int(sys.stdin.readline())
+
 arr = []
-for i in range(int(input())):
-    arr.append(list(map(int,input().split())))
+for i in range(n):
+    start, end = map(int, sys.stdin.readline().split())
+    arr.append((start, end))
 
 
 arr.sort(key = lambda x:(x[1],x[0]))
