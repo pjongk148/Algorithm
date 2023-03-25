@@ -1,14 +1,9 @@
+import sys
+input=sys.stdin.readline
+
 n = int(input())
-arr = []
-for i in range(n):
-    arr.append(int(input()))
+arr = sorted([int(input()) for _ in range(n)],reverse=True)
 
-arr.sort()
-
-ans = 0
-for i in range(len(arr)):
-    tmp = arr[i] * (len(arr)-i)
-    if tmp > ans:
-        ans = tmp
+ans = max([arr[i]*(i+1) for i in range(n)])
 
 print(ans)
