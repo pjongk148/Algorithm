@@ -15,4 +15,4 @@ def solution(x, y, n):
         if i%3==0:
             DP[i] = min(DP[i], DP[i//3]+1)
 
-    return DP[y] if DP[y] != (y + 1) else -1
+    return DP[y] if DP[y] != y + 1 else -1
