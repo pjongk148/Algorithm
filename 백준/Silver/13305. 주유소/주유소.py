@@ -7,7 +7,7 @@ price = list(map(int, input().split()))
 
 ans = price[0] * dist[0]
 cur_price = price[0]
-for i in range(1,len(dist)):
+for i in range(1,n-1):
     if price[i] < cur_price:
         cur_price = price[i]
     
