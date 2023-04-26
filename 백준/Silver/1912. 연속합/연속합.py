@@ -1,10 +1,7 @@
 n = int(input())
-arr = list(map(int,input().split()))
-tmp = [0]*n
-result = -1001
+arr = list(map(int, input().split()))
 
-for i in range(0,n) :
-    tmp[i] = max(tmp[i-1]+arr[i],arr[i])
-    result = max(tmp[i],result)
+for i in range(1,n):
+    arr[i] = max(arr[i],arr[i] + arr[i-1])
 
-print(result)
+print(max(arr))
