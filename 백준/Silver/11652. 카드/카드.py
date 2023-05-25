@@ -2,14 +2,12 @@ import sys
 input = sys.stdin.readline
 
 n = int(input())
-card_dic = {}
-
-for i in range(n) :
-    card = int(input())
-    if card in card_dic :
-        card_dic[card] += 1
-    else :
-        card_dic[card] = 1
-
-result = sorted(card_dic.items(),key = lambda x : (-x[1],x[0]))
-print(result[0][0])
+arr = dict()
+for _ in range(n):
+    num = int(input())
+    if num in arr:
+        arr[num] += 1
+    else:
+        arr[num] = 1
+ans = sorted(arr.items(),key = lambda x : (-x[1],x[0]))
+print(int(ans[0][0]))
