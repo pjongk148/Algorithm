@@ -1,29 +1,39 @@
 import sys
-N, M, B = map(int,input().split())
-block = []
-for _ in range(N):
-    block.append([int(x) for x in sys.stdin.readline().rstrip().split()])
+input = sys.stdin.readline
 
-ans = int(1e9)
-glevel = 0
+n,m,b = map(int, input().split())
 
-for i in range(257): #땅 높이
-    use_block = 0
-    take_block = 0
-    for x in range(N):
-        for y in range(M):
-            if block[x][y] > i:
-                take_block += block[x][y] - i
-            else:
-                use_block += i - block[x][y]
+arr = [list(map(int,input().rstrip().split())) for _ in range(n)]
 
-    if use_block > take_block + B:
-        continue
+min_d = 257
+max_d = 0
+for i in arr:
+    if max_d < max(i):
+        max_d = max(i)
+    if min_d > min(i):
+        min_d = min(i)
 
-    count = take_block * 2 + use_block
+depth = [i for i in range(min_d,max_d+1)]
+min_time = float("inf")
+ans = 0
+for target in depth:
+    tmp_time = 0
+    tmp_block = b
+    for i in range(n):
+        for j in range(m):
+            dif = arr[i][j] - target
+            if dif > 0 :
+                tmp_block += dif
+                tmp_time += dif * 2
+            elif dif < 0:
+                tmp_block += dif
+                tmp_time -= dif
+                
+    if tmp_block < 0:
+        continue      
+           
+    if tmp_time <= min_time:
+        min_time = tmp_time
+        ans = target
 
-    if count <= ans:
-        ans = count
-        glevel = i
-
-print(ans, glevel)
+print(min_time, ans)
