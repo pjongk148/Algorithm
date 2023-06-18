@@ -1,12 +1,11 @@
 import sys
 input = sys.stdin.readline
-N = int(input()) ; arr = []
+n= int(input())
+arr = []
+for i in range(n):
+    tmp = input().split()
+    arr.append(tmp)
+arr.sort(key = lambda x:(-int(x[1]),int(x[2]),-int(x[3]),x[0]))
 
-for _ in range(N):
-    a,b,c,d = list(map(str,input().split()))
-    arr.append( [a, int(b),int(c),int(d)])
-
-arr.sort(key = lambda x : (-x[1] , x[2],-x[3],x[0]) )
-
-for i in arr :
+for i in arr:
     print(i[0])
