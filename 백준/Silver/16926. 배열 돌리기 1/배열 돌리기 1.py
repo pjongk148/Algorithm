@@ -3,7 +3,6 @@ import math
 input = sys.stdin.readline
 
 n,m,r = map(int, input().split())
-
 arr =[list(map(int, input().split())) for _ in range(n)]
 
 def rotate(x,y,z,w):
@@ -11,22 +10,17 @@ def rotate(x,y,z,w):
         return
     
     tmp = arr[z-x][y]
+    tmp2 = arr[x][w-y]
     
     for i in range(z-x-1,x-1,-1):
         arr[i+1][y] = arr[i][y]
     
-    tmp2 = arr[z-x][w-y]
-
-    arr[z-x][y+1:w-y+1] = [tmp] + arr[z-x][y+1:w-y]
-
-    tmp3 = arr[x][w-y]
-    
     for i in range(x,z-x):
         arr[i][w-y] = arr[i+1][w-y]
-  
-    arr[z-(x+1)][w-y] = tmp2
     
-    arr[x][x:w-y] = arr[x][y+1:w-y] + [tmp3]
+    arr[z-x][y+1:w-y+1] = [tmp] + arr[z-x][y+1:w-y]
+    arr[x][x:w-y] = arr[x][y+1:w-y] + [tmp2]
+    
     x += 1
     y += 1
     
