@@ -1,18 +1,15 @@
-bar_razor = list(input())
-answer = 0
-st = []
-
-for i in range(len(bar_razor)):
-    if bar_razor[i] == '(':
-        st.append('(')
-
+steel = list(input())
+arr = []
+ans = 0
+for i in range(len(steel)):
+    if steel[i] == '(':
+        arr.append('(')
     else:
-        if bar_razor[i-1] == '(': 
-            st.pop()
-            answer += len(st)
-
+        if steel[i-1] == '(':
+            arr.pop()
+            ans += len(arr)
         else:
-            st.pop() 
-            answer += 1 
-
-print(answer)
+            arr.pop()
+            ans += 1
+            
+print(ans)
