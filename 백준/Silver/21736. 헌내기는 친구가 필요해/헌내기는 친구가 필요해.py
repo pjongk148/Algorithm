@@ -1,5 +1,5 @@
-#import sys
-#input = sys.stdin.readline
+import sys
+input = sys.stdin.readline
 
 n,m = map(int,input().split())
 arr = []
