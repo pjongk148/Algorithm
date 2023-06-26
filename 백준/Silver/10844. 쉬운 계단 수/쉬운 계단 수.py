@@ -1,19 +1,20 @@
-N = int(input())
+n = int(input())
+ans = 0
+arr = [[0] * 10 for _ in range(n)]
+for i in range(10):
+    if i == 0 :
+        arr[0][i] = 0
+    else:
+        arr[0][i] = 1
 
-dp = [[0]*10 for _ in range(N+1)]
-for i in range(1, 10):
-    dp[1][i] = 1
-
-MOD = 1000000000
-
-for i in range(2, N+1):
+for i in range(n-1):
     for j in range(10):
         if j == 0:
-            dp[i][j] = dp[i-1][1]
+            arr[i+1][j+1] += (arr[i][j])
         elif j == 9:
-            dp[i][j] = dp[i-1][8]
+            arr[i+1][j-1] += (arr[i][j])
         else:
-            dp[i][j] = dp[i-1][j-1] + dp[i-1][j+1] 
+            arr[i+1][j+1] += (arr[i][j])
+            arr[i+1][j-1] += (arr[i][j])
 
-print(sum(dp[N]) % MOD)
-
+print(sum(arr[-1]) % 1000000000)
