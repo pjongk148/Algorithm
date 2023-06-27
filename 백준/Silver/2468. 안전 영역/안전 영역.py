@@ -1,24 +1,9 @@
 import sys
 from collections import deque
-input = sys.stdin.readline
+#input = sys.stdin.readline
 
-n = int(input())
-min_dep  = 101
-max_dep = 0
-
-arr = []
-for _ in range(n):
-    tmp = list(map(int,input().split()))
-    if min(tmp) < min_dep:
-        min_dep = min(tmp)
-    if max(tmp) > max_dep:
-        max_dep = max(tmp)
-    arr.append(tmp)
-
-water = [[False]* n for _ in range(n)]
-max_cnt = 1
-
-for depth in range(min_dep,max_dep):
+def islandcount(arr,n,depth):
+    water = [[False]* n for _ in range(n)]
     cnt = 0
     for i in range(len(arr)):
         for j in range(len(arr[0])):
@@ -39,8 +24,27 @@ for depth in range(min_dep,max_dep):
                                     queue.append((nx,ny))
 
                 cnt += 1
-    if cnt > max_cnt:
+    return cnt
+
+n = int(input())
+min_dep  = 101
+max_dep = 0
+arr = []
+
+for _ in range(n):
+    tmp = list(map(int,input().split()))
+    if min(tmp) < min_dep:
+        min_dep = min(tmp)
+    if max(tmp) > max_dep:
+        max_dep = max(tmp)
+    arr.append(tmp)
+
+
+max_cnt = 1
+
+for depth in range(min_dep,max_dep):
+    cnt = islandcount(arr,n,depth)
+    if  cnt > max_cnt:
         max_cnt = cnt
-    water = [[False] * n for _ in range(n)]
-    
+
 print(max_cnt)             
