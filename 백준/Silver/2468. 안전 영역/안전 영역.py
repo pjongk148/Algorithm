@@ -1,7 +1,6 @@
 import sys
-import copy
 from collections import deque
-#input = sys.stdin.readline
+input = sys.stdin.readline
 
 n = int(input())
 min_dep  = 101
@@ -17,7 +16,6 @@ for _ in range(n):
     arr.append(tmp)
 
 water = [[False]* n for _ in range(n)]
-water2 = copy.deepcopy(water)
 max_cnt = 1
 
 for depth in range(min_dep,max_dep):
@@ -43,6 +41,6 @@ for depth in range(min_dep,max_dep):
                 cnt += 1
     if cnt > max_cnt:
         max_cnt = cnt
-    water =copy.deepcopy(water2)
+    water = [[False] * n for _ in range(n)]
     
 print(max_cnt)             
