@@ -16,11 +16,10 @@ while idx < n:
         for i in range(point,target+1):
             n_arr.append(i)
             ans.append("+")
-        stack.append(n_arr.pop())
+        n_arr.pop()
         ans.append("-")
         point = target + 1
     elif point == target:
-        stack.append(target)
         ans.append("+")
         ans.append("-")
         point = target + 1
@@ -38,7 +37,6 @@ while idx < n:
                     break
 
                 if tmp == target:
-                    stack.append(tmp)
                     break
                 
     idx += 1
