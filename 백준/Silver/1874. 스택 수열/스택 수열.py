@@ -1,0 +1,48 @@
+import sys
+input = sys.stdin.readline
+n = int(input())
+arr = [int(input()) for _ in range(n)]
+
+
+
+stack = []
+n_arr = []
+ans = []
+idx = 0
+point = 1
+while idx < n:
+    target = arr[idx]
+    if point < target:
+        for i in range(point,target+1):
+            n_arr.append(i)
+            ans.append("+")
+        stack.append(n_arr.pop())
+        ans.append("-")
+        point = target + 1
+    elif point == target:
+        stack.append(target)
+        ans.append("+")
+        ans.append("-")
+        point = target + 1
+    else:
+        if not n_arr:
+            print("NO")
+            break
+        else:
+            while True:
+                tmp = n_arr.pop()
+                ans.append("-")
+                if not n_arr and tmp != target:
+                    idx = n+1
+                    print("NO")
+                    break
+
+                if tmp == target:
+                    stack.append(tmp)
+                    break
+                
+    idx += 1
+
+if idx == n:
+    for i in ans:
+        print(i)
