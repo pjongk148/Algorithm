@@ -11,10 +11,10 @@ def stack(n,arr,n_arr,ans,idx,point):
     while idx < n:
         target = arr[idx]
         if point < target:
-            for i in range(point,target+1):
+            for i in range(point,target):
                 n_arr.append(i)
                 ans.append("+")
-            n_arr.pop()
+            ans.append("+")
             ans.append("-")
             point = target + 1
         elif point == target:
@@ -22,18 +22,13 @@ def stack(n,arr,n_arr,ans,idx,point):
             ans.append("-")
             point = target + 1
         else:
-            if not n_arr:
+            if not n_arr or n_arr[-1] <target:
                 print("NO")
                 break
             else:
                 while True:
                     tmp = n_arr.pop()
                     ans.append("-")
-                    if not n_arr and tmp != target:
-                        idx = n+1
-                        print("NO")
-                        break
-
                     if tmp == target:
                         break
 
