@@ -4,50 +4,30 @@ input = sys.stdin.readline
 
 n = int(input())
 arr = list(map(int,input().split()))
-
-tmp = list(map(int, input().split()))
-calc =[]
+plus,minus,multi,divide = map(int, input().split())
 
 idx = 1
-ans = arr[0]
+start = arr[0]
 ans_arr = []
 
-
-def backtrack(arr, tmp,idx, ans):
-    
-    if idx ==len(arr):
+def backtrack(idx,ans, plus, minus, multi, divide):
+    if idx == n:
         ans_arr.append(ans)
         return
-
-    for i in range(0,4):
-        cal = arr[idx]
-        if tmp[i] > 0:
-            if i == 0:
-                new_tmp = copy.deepcopy(tmp)
-                new_tmp[i] -= 1
-                
-                backtrack(arr,new_tmp,idx+1,ans + cal)
-            elif i == 1:
-                new_tmp = copy.deepcopy(tmp)
-                new_tmp[i] -= 1
-                
-                backtrack(arr,new_tmp,idx+1,ans - cal)
-            elif i == 2:
-                new_tmp = copy.deepcopy(tmp)
-                new_tmp[i] -= 1
-                
-                backtrack(arr,new_tmp,idx+1,ans * cal)
+    else:
+        if plus:
+            backtrack(idx+1,ans + arr[idx],plus-1,minus,multi,divide)
+        if minus:
+            backtrack(idx+1,ans - arr[idx],plus,minus-1,multi,divide)
+        if multi:
+            backtrack(idx+1,ans * arr[idx],plus,minus,multi-1,divide)
+        if divide:
+            if ans < 0:
+                backtrack(idx+1,-(-ans // arr[idx]),plus,minus,multi,divide-1)
             else:
-                new_tmp = copy.deepcopy(tmp)
-                new_tmp[i] -= 1
-                
-                if ans < 0:
-                    backtrack(arr,new_tmp,idx+1,-(-ans // cal))
+                backtrack(idx+1,ans // arr[idx],plus,minus,multi,divide-1)
 
-                else:
-                    backtrack(arr,new_tmp,idx+1,ans // cal)
-
-backtrack(arr, tmp,idx, ans)
+backtrack(idx,start,plus,minus,multi,divide)
 
 print(max(ans_arr))
 print(min(ans_arr))
